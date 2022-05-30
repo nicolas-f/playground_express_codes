@@ -21,8 +21,8 @@ except ImportError:
     except ImportError:
         pass  # not always supported by every board!
 tone_volume = 0.2  # Increase this to increase the volume of the tone.
-FREQUENCY = 500  # Hz
-SAMPLERATE = 8000  # 8000 samples/second, recommended!
+FREQUENCY = 1000  # Hz
+SAMPLERATE = 48000  # 8000 samples/second, recommended!
 
 button = digitalio.DigitalInOut(board.BUTTON_A)
 button.switch_to_input(pull=digitalio.Pull.DOWN)
@@ -39,7 +39,7 @@ speaker_enable.direction = digitalio.Direction.OUTPUT
 speaker_enable.value = True
 
 audio = AudioOut(board.SPEAKER)
-sine_wave_sample = RawSample(sine_wave)
+sine_wave_sample = RawSample(sine_wave, sample_rate=SAMPLERATE)
 
 # A single sine wave sample is hundredths of a second long. If you set loop=False, it will play
 # a single instance of the sample (a quick burst of sound) and then silence for the rest of the
